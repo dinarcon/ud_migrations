@@ -1,0 +1,7 @@
+type: module
+name: UD First Migration
+description: 'Example of basic Drupal migration. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
+package: Understand Drupal
+core: 8.x
+dependencies:
+  - drupal:migrate

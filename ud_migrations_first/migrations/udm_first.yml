@@ -1,0 +1,22 @@
+id: udm_first
+label: 'UD First migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      unique_id: 1
+      creative_title: 'The versatility of Drupal fields'
+      engaging_content: 'Fields are Drupal''s atomic data storage mechanism...'
+    -
+      unique_id: 2
+      creative_title: 'What is a view in Drupal? How do they work?'
+      engaging_content: 'In Drupal, a view is a listing of information. It can a list of nodes, users, comments, taxonomy terms, files, etc...'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: creative_title
+  body: engaging_content
+destination:
+  plugin: 'entity:node'
+  default_bundle: page
