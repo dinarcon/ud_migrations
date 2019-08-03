@@ -1,0 +1,32 @@
+id: udm_process_intro
+label: 'UD Process Plugins Introduction'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      unique_id: 1
+      first_name: 'FELIX'
+      last_name: 'DELATTRE'
+    -
+      unique_id: 2
+      first_name: 'BENJAMIN'
+      last_name: 'MELANÇON'
+    -
+      unique_id: 3
+      first_name: 'STEFAN'
+      last_name: 'FREUDENBERG'
+  ids:
+    unique_id:
+      type: integer
+process:
+  type:
+    plugin: default_value
+    default_value: page
+  title:
+    plugin: concat
+    source:
+      - first_name
+      - last_name
+    delimiter: ' '
+destination:
+  plugin: 'entity:node'
