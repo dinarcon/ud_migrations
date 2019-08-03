@@ -23,10 +23,17 @@ process:
     plugin: default_value
     default_value: page
   title:
-    plugin: concat
-    source:
-      - first_name
-      - last_name
-    delimiter: ' '
+    -
+      plugin: concat
+      source:
+        - first_name
+        - last_name
+      delimiter: ' '
+    -
+      plugin: callback
+      callable: mb_strtolower
+    -
+      plugin: callback
+      callable: ucwords
 destination:
   plugin: 'entity:node'
