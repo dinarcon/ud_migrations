@@ -1,0 +1,50 @@
+id: udm_subfields
+label: 'UD subfields migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      unique_id: 1
+      name: 'Michele Metts'
+      profile: '<a href="https://www.drupal.org/u/freescholar" title="Michele on Drupal.org">freescholar</a> on Drupal.org'
+      photo_url: 'https://agaric.coop/sites/default/files/2018-12/micky-cropped.jpg'
+      photo_description: 'Photo of Michele Metts'
+      photo_width: '587'
+      photo_height: '657'
+    -
+      unique_id: 2
+      name: 'David Valdez'
+      profile: '<a href="https://www.drupal.org/u/gnuget" title="David on Drupal.org">gnuget</a> on Drupal.org'
+      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-94-1480090110.jpg'
+      photo_description: 'Photo of David Valdez'
+      photo_width: '512'
+      photo_height: '512'
+    -
+      unique_id: 3
+      name: 'Clayton Dewey'
+      profile: '<a href="https://www.drupal.org/u/cedewey" title="Clayton on Drupal.org">cedewey</a> on Drupal.org'
+      photo_url: 'https://agaric.coop/sites/default/files/2019-01/clayton-profile-medium.jpeg'
+      photo_description: 'Photo of Clayton Dewey'
+      photo_width: '700'
+      photo_height: '592'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: name
+  body/value: profile
+  body/format:
+    plugin: default_value
+    default_value: restricted_html
+  field_image/target_id:
+    plugin: file_import
+    source: photo_url
+    reuse: TRUE
+    id_only: TRUE
+  field_image/alt: photo_description
+  field_image/title: photo_description
+  field_image/width: photo_width
+  field_image/height: photo_height
+destination:
+  plugin: 'entity:node'
+  default_bundle: article
