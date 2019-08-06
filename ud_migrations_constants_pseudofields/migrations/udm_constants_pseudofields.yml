@@ -1,0 +1,54 @@
+id: udm_constants_pseudofields
+label: 'UD constants and pseudofields migration'
+source:
+  constants:
+    BASE_URL: 'https://agaric.coop'
+    PHOTO_DESCRIPTION_PREFIX: 'Photo of'
+  plugin: embedded_data
+  data_rows:
+    -
+      unique_id: 1
+      name: 'Michele Metts'
+      photo_url: 'sites/default/files/2018-12/micky-cropped.jpg'
+      photo_width: '587'
+      photo_height: '657'
+    -
+      unique_id: 2
+      name: 'David Valdez'
+      photo_url: 'sites/default/files/pictures/picture-94-1480090110.jpg'
+      photo_width: '512'
+      photo_height: '512'
+    -
+      unique_id: 3
+      name: 'Clayton Dewey'
+      photo_url: 'sites/default/files/2019-01/clayton-profile-medium.jpeg'
+      photo_width: '700'
+      photo_height: '592'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: name
+  psf_image_url:
+    plugin: concat
+    source:
+      - constants/BASE_URL
+      - photo_url
+    delimiter: '/'
+  psf_image_description:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - name
+    delimiter: ' '
+  field_image:
+    plugin: image_import
+    source: '@psf_image_url'
+    reuse: TRUE
+    alt: '@psf_image_description'
+    title: '@title'
+    width: photo_width
+    height: photo_height
+destination:
+  plugin: 'entity:node'
+  default_bundle: article
