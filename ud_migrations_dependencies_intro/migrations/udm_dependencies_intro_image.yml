@@ -1,0 +1,49 @@
+id: udm_dependencies_intro_image
+label: 'UD dependee image migration'
+source:
+  constants:
+    SOURCE_DOMAIN: 'https://agaric.coop'
+    DRUPAL_FILE_DIRECTORY: 'public://portrait/'
+  plugin: embedded_data
+  data_rows:
+    - photo_id: 'P01'
+      photo_url: 'sites/default/files/2018-12/micky-cropped.jpg'
+    - photo_id: 'P02'
+      photo_url: ''
+    - photo_id: 'P03'
+      photo_url: 'sites/default/files/pictures/picture-94-1480090110.jpg'
+    - photo_id: 'P04'
+      photo_url: 'sites/default/files/2019-01/clayton-profile-medium.jpeg'
+  ids:
+    photo_id:
+      type: string
+process:
+  psf_destination_filename:
+    - plugin: callback
+      callable: basename
+      source: photo_url
+    - plugin: skip_on_empty
+      method: row
+      message: 'Cannot import empty image filename.'
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    - plugin: concat
+      delimiter: '/'
+      source:
+        - constants/SOURCE_DOMAIN
+        - photo_url
+    - plugin: urlencode
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'
