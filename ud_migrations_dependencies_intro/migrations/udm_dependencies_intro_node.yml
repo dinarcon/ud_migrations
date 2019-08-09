@@ -1,0 +1,38 @@
+id: udm_dependencies_intro_node
+label: 'UD host node migration'
+source:
+  constants:
+    PHOTO_DESCRIPTION_PREFIX: 'Photo of'
+  plugin: embedded_data
+  data_rows:
+    - unique_id: 1
+      name: 'Michele Metts'
+      photo_file: 'P01'
+    - unique_id: 2
+      name: 'David Valdez'
+      photo_file: 'P03'
+    - unique_id: 3
+      name: 'Clayton Dewey'
+      photo_file: 'P04'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: name
+  field_image/target_id:
+    plugin: migration_lookup
+    migration: udm_dependencies_intro_image
+    source: photo_file
+  field_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - name
+    delimiter: ' '
+destination:
+  plugin: 'entity:node'
+  default_bundle: article
+migration_dependencies:
+  required:
+    - udm_dependencies_intro_image
+  optional: []
