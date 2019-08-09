@@ -1,5 +1,8 @@
 id: udm_dependencies_intro_image
 label: 'UD dependee image migration'
+migration_tags:
+  - UD Articles
+  - UD Example
 source:
   constants:
     SOURCE_DOMAIN: 'https://agaric.coop'
