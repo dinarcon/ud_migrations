@@ -1,0 +1,37 @@
+id: udm_dependencies_multivalue_node
+label: 'UD host node migration for multivalue taxonomy term'
+source:
+  plugin: embedded_data
+  data_rows:
+    - unique_id: 1
+      thoughtful_title: 'Amazing recipe'
+      fruit_list: 'Green apple, Banana, Pear'
+    - unique_id: 2
+      thoughtful_title: 'Fruit-less recipe'
+    - unique_id: 3
+      thoughtful_title: 'Delicious recipe'
+      fruit_list: 'Green grape'
+    - unique_id: 4
+      thoughtful_title: 'Fantastic recipe'
+      fruit_list: 'Green apple, Red apple, Grape'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: thoughtful_title
+  field_tags:
+    - plugin: skip_on_empty
+      source: fruit_list
+      method: process
+      message: 'No fruit_list listed.'
+    - plugin: explode
+      delimiter: ','
+    - plugin: migration_lookup
+      migration: udm_dependencies_multivalue_term
+destination:
+  plugin: 'entity:node'
+  default_bundle: article
+migration_dependencies:
+  required:
+    - udm_dependencies_multivalue_term
+  optional: []

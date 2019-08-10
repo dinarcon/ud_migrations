@@ -1,0 +1,38 @@
+id: udm_dependencies_multivalue_term
+label: 'UD dependee taxonomy term migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    - fruit_name: 'Grape'
+      fruit_description: 'Eat fresh or prepare some jelly.'
+    - fruit_name: 'Red grape'
+      fruit_description: 'Sweet grape'
+      fruit_parent: 'Grape'
+    - fruit_name: 'White grape'
+      fruit_description: 'Sour grape'
+      fruit_parent: 'Grape'
+    - fruit_name: 'Apple'
+      fruit_description: 'Eat fresh or prepare some juice.'
+    - fruit_name: 'Red apple'
+      fruit_description: 'Sweet apple'
+      fruit_parent: 'Apple'
+    - fruit_name: 'Green apple'
+      fruit_description: 'Sour apple'
+      fruit_parent: 'Apple'
+    - fruit_name: 'Banana'
+      fruit_description: 'Eat fresh or prepare a smoothie.'
+    - fruit_name: 'Pear'
+      fruit_description: 'Eat fresh or prepare a jam.'
+  ids:
+    fruit_name:
+      type: string
+process:
+  name: fruit_name
+  description: fruit_description
+  parent:
+    plugin: migration_lookup
+    migration: udm_dependencies_multivalue_term
+    source: fruit_parent
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: tags
