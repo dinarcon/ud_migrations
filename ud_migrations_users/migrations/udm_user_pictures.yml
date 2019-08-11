@@ -1,0 +1,39 @@
+id: udm_user_pictures
+label: 'UD user pictures migration'
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://profile_picture/'
+  plugin: embedded_data
+  data_rows:
+    - photo_id: 'P01'
+      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-15-1421176712.jpg'
+    - photo_id: 'P02'
+      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-3-1421176784.jpg'
+    - photo_id: 'P03'
+      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-2-1421176752.jpg'
+  ids:
+    photo_id:
+      type: string
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: photo_url
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: photo_url
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'

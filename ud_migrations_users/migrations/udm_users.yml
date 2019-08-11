@@ -1,0 +1,95 @@
+id: udm_users
+label: 'UD users migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    - legacy_id: 101
+      public_name: 'Michele'
+      user_email: 'micky@example.com'
+      user_timezone: 'America/New_York'
+      user_password: 'totally insecure password 1'
+      user_status: 'active'
+      member_since: 'January 1, 2011'
+      user_roles: 'forum moderator, forum admin'
+      user_photo: 'P01'
+    - legacy_id: 102
+      public_name: 'Benjamin'
+      user_email: 'ben@example.com'
+      user_timezone: 'America/Chicago'
+      user_password: 'totally insecure password 2'
+      user_status: 'active'
+      member_since: 'February 2, 2012'
+      user_roles: 'forum user'
+      user_photo: 'P02'
+    - legacy_id: 103
+      public_name: 'Stefan'
+      user_email: 'stefan@example.com'
+      user_timezone: 'Europe/Berlin'
+      user_password: 'totally insecure password 3'
+      user_status: 'active'
+      member_since: 'March 3, 2013'
+      user_roles: 'webmaster'
+      user_photo: 'P03'
+    - legacy_id: 4
+      public_name: 'Benjamin'
+      user_email: 'benjamin@example.net'
+      user_timezone: 'America/Managua'
+      user_password: 'totally insecure password 4'
+      user_status: 'inactive'
+      member_since: 'April 4, 2014'
+  ids:
+    legacy_id:
+      type: integer
+process:
+  mail: user_email
+  init: user_email
+  timezone: user_timezone
+  name:
+    - plugin: machine_name
+      source: public_name
+    - plugin: make_unique_entity_field
+      entity_type: user
+      field: name
+      postfix: _
+  pass:
+    plugin: callback
+    callable: md5
+    source: user_password
+  status:
+    plugin: static_map
+    source: user_status
+    map:
+      inactive: 0
+      active: 1
+  created:
+    plugin: format_date
+    source: member_since
+    from_format: 'F j, Y'
+    to_format: 'U'
+  changed: '@created'
+  access: '@created'
+  login: '@created'
+  roles:
+    - plugin: skip_on_empty
+      method: process
+      source: user_roles
+    - plugin: explode
+      delimiter: ','
+    - plugin: callback
+      callable: trim
+    - plugin: static_map
+      map:
+        'forum admin': administrator
+        'webmaster': administrator
+      default_value: null
+  user_picture/target_id:
+    plugin: migration_lookup
+    migration: udm_user_pictures
+    source: user_photo
+destination:
+  plugin: 'entity:user'
+  md5_passwords: true
+migration_dependencies:
+  required:
+    - udm_user_pictures
+  optional: []
