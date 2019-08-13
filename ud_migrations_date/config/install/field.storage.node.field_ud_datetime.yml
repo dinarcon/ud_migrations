@@ -1,0 +1,23 @@
+uuid: 67a60d8a-38df-4d8a-8211-dcd4b442bcd3
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.field_ud_datetime
+field_name: field_ud_datetime
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

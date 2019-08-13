@@ -1,0 +1,55 @@
+uuid: 908b4475-110e-4549-b507-eadcecc1bfb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ud_date.field_ud_date
+    - field.field.node.ud_date.field_ud_date_range
+    - field.field.node.ud_date.field_ud_datetime
+    - node.type.ud_date
+  module:
+    - datetime
+    - datetime_range
+    - user
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.ud_date.default
+targetEntityType: node
+bundle: ud_date
+mode: default
+content:
+  field_ud_date:
+    weight: 101
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: html_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_ud_date_range:
+    weight: 102
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: html_date
+      separator: '-'
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_ud_datetime:
+    weight: 103
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

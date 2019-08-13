@@ -1,0 +1,44 @@
+id: udm_date
+label: 'UD datetime migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    - unique_id: 1
+      node_title: 'Date example 1'
+      node_creation_date: 'January 1, 2019 19:15:30'
+      src_date: '2019/12/1'
+      src_date_end: '2019/12/31'
+      src_datetime: '2019/12/24 19:15:30'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: node_title
+  created:
+    plugin: format_date
+    source: node_creation_date
+    from_format: 'F j, Y H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+  field_ud_date/value:
+    plugin: format_date
+    source: src_date
+    from_format: 'Y/m/j'
+    to_format: 'Y-m-d'
+  field_ud_date_range/value: '@field_ud_date/value'
+  field_ud_date_range/end_value:
+    plugin: format_date
+    source: src_date_end
+    from_format: 'Y/m/j'
+    to_format: 'Y-m-d'
+  field_ud_datetime/value:
+    plugin: format_date
+    source: src_datetime
+    from_format: 'Y/m/j H:i:s'
+    to_format: 'Y-m-d\TH:i:s'
+    from_timezone: 'America/Managua'
+    to_timezone: 'UTC'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_date

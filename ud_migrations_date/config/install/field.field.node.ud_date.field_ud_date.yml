@@ -1,0 +1,24 @@
+uuid: b7414916-0b8d-4bea-bc7a-a8cddfe57bbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ud_date
+    - node.type.ud_date
+  module:
+    - datetime
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.ud_date.field_ud_date
+field_name: field_ud_date
+entity_type: node
+bundle: ud_date
+label: 'UD date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

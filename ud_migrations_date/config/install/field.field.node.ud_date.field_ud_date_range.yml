@@ -1,0 +1,24 @@
+uuid: 2c182ad6-bd17-486b-a99f-52e38a706058
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ud_date_range
+    - node.type.ud_date
+  module:
+    - datetime_range
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.ud_date.field_ud_date_range
+field_name: field_ud_date_range
+entity_type: node
+bundle: ud_date
+label: 'UD date range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

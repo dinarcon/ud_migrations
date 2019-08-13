@@ -1,0 +1,20 @@
+uuid: 44608799-1b3a-4ef7-a321-b3329fbbb5c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+  enforced:
+    module:
+      - ud_migrations_date
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'UD Date'
+type: ud_date
+description: 'Example content type for date migration. Learn more at https://understanddrupal.com/migrations'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,23 @@
+uuid: 862565ab-c094-402d-ad43-3bf325829dee
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.ud_date
+  module:
+    - user
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.ud_date.teaser
+targetEntityType: node
+bundle: ud_date
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

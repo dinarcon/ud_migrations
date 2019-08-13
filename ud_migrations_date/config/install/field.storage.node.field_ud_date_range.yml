@@ -1,0 +1,23 @@
+uuid: defaca8a-7469-452e-93b0-1f55a9df0a2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - node
+  enforced:
+    module:
+      - ud_migrations_date
+id: node.field_ud_date_range
+field_name: field_ud_date_range
+entity_type: node
+type: daterange
+settings:
+  datetime_type: date
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
