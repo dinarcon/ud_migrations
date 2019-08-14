@@ -1,0 +1,42 @@
+uuid: cd20af84-9a4b-4226-8e53-c554c0ac1371
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ud_address
+    - node.type.ud_address
+  module:
+    - address
+  enforced:
+    module:
+      - ud_migrations_address
+id: node.ud_address.field_ud_address
+field_name: field_ud_address
+entity_type: node
+bundle: ud_address
+label: 'UD address'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    country_code: NI
+    langcode: ''
+    given_name: ''
+    family_name: ''
+    organization: ''
+    address_line1: ''
+    address_line2: ''
+    postal_code: ''
+    locality: ''
+    administrative_area: ''
+    additional_name: null
+    sorting_code: null
+    dependent_locality: null
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides: {  }
+  fields: {  }
+field_type: address

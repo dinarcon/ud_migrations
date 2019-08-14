@@ -1,0 +1,31 @@
+uuid: b98fe303-a2cd-49b3-864f-efaa128cae9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ud_address.field_ud_address
+    - node.type.ud_address
+  module:
+    - address
+    - user
+  enforced:
+    module:
+      - ud_migrations_address
+id: node.ud_address.default
+targetEntityType: node
+bundle: ud_address
+mode: default
+content:
+  field_ud_address:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

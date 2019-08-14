@@ -1,0 +1,23 @@
+uuid: 8483d260-e15e-4ea9-8d68-aced3f055ac7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.ud_address
+  module:
+    - user
+  enforced:
+    module:
+      - ud_migrations_address
+id: node.ud_address.teaser
+targetEntityType: node
+bundle: ud_address
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

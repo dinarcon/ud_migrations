@@ -1,0 +1,55 @@
+id: udm_address
+label: 'UD datetime migration'
+source:
+  plugin: embedded_data
+  data_rows:
+    - unique_id: 1
+      first_name: 'Michele'
+      last_name: 'Metts'
+      company: 'Agaric LLC'
+      city: 'Boston'
+      state: 'MA'
+      zip: '02111'
+      country: 'US'
+    - unique_id: 2
+      first_name: 'Stefan'
+      last_name: 'Freudenberg'
+      company: 'Agaric GmbH'
+      city: 'Hamburg'
+      state: ''
+      zip: '21073'
+      country: 'DE'
+    - unique_id: 3
+      first_name: 'Benjamin'
+      last_name: 'Melançon'
+      company: 'Agaric SA'
+      city: 'Managua'
+      state: 'Managua'
+      zip: ''
+      country: 'NI'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title:
+    plugin: concat
+    source:
+      - first_name
+      - last_name
+    delimiter: ' '
+  field_ud_address/given_name: first_name
+  field_ud_address/family_name: last_name
+  field_ud_address/organization: company
+  field_ud_address/address_line1:
+    plugin: default_value
+    default_value: 'It is a secret ;)'
+  field_ud_address/address_line2:
+    plugin: default_value
+    default_value: 'Do not tell anyone :)'
+  field_ud_address/locality: city
+  field_ud_address/administrative_area: state
+  field_ud_address/postal_code: zip
+  field_ud_address/country_code: country
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_address
