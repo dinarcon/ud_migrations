@@ -1,0 +1,56 @@
+id: ud_migrations_paragraph_intro_node
+label: 'UD host node migration for paragraph example'
+migration_tags:
+  - UD Paragraphs Intro
+  - UD Example
+source:
+  constants:
+    PHOTO_DESCRIPTION_PREFIX: 'Photo of'
+  plugin: embedded_data
+  data_rows:
+    - unique_id: 1
+      name: 'Michele Metts'
+      photo_file: 'P01'
+      book_ref: 'B10'
+    - unique_id: 2
+      name: 'Benjamin Melançon'
+      photo_file: 'P02'
+      book_ref: 'B20'
+    - unique_id: 3
+      name: 'Stefan Freudenberg'
+      photo_file: 'P03'
+      book_ref: 'B30'
+  ids:
+    unique_id:
+      type: integer
+process:
+  title: name
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: ud_migrations_paragraph_intro_image
+    source: photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - name
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: ud_migrations_paragraph_intro_paragraph
+    source: book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - ud_migrations_paragraph_intro_image
+    - ud_migrations_paragraph_intro_paragraph
+  optional: []

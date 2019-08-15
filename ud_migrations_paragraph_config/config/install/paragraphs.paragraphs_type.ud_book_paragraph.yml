@@ -1,0 +1,12 @@
+uuid: 377f91e7-6c57-4329-875c-beb07d316d3f
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: ud_book_paragraph
+label: 'UD book paragraph'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

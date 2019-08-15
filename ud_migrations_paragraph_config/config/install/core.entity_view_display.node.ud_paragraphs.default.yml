@@ -1,0 +1,44 @@
+uuid: 61a39277-a0b4-4405-8ec7-5755928ab247
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ud_paragraphs.field_ud_favorite_book
+    - field.field.node.ud_paragraphs.field_ud_image
+    - node.type.ud_paragraphs
+  module:
+    - entity_reference_revisions
+    - image
+    - user
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: node.ud_paragraphs.default
+targetEntityType: node
+bundle: ud_paragraphs
+mode: default
+content:
+  field_ud_favorite_book:
+    type: entity_reference_revisions_entity_view
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_ud_image:
+    weight: 101
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

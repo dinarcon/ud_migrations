@@ -1,0 +1,26 @@
+id: ud_migrations_paragraph_intro_paragraph
+label: 'UD dependee paragraph migration for paragraph example'
+migration_tags:
+  - UD Paragraphs Intro
+  - UD Example
+source:
+  plugin: embedded_data
+  data_rows:
+    - book_id: 'B10'
+      book_title: 'The definite guide to Drupal 7'
+      book_author: 'Benjamin Melançon et al.'
+    - book_id: 'B20'
+      book_title: 'Understanding Drupal Views'
+      book_author: 'Carlos Dinarte'
+    - book_id: 'B30'
+      book_title: 'Understanding Drupal Migrations'
+      book_author: 'Mauricio Dinarte'
+  ids:
+    book_id:
+      type: string
+process:
+  field_ud_book_paragraph_title: book_title
+  field_ud_book_paragraph_author: book_author
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: ud_book_paragraph

@@ -1,0 +1,24 @@
+uuid: 536a1903-7439-463b-ba84-7fb7618d9a35
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+    - paragraphs
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: node.field_ud_favorite_book
+field_name: field_ud_favorite_book
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

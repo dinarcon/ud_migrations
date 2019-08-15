@@ -1,0 +1,35 @@
+uuid: 6d7dde8c-585e-409a-a2da-9ddc893898db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ud_book_paragraph.field_ud_book_paragraph_author
+    - field.field.paragraph.ud_book_paragraph.field_ud_book_paragraph_title
+    - paragraphs.paragraphs_type.ud_book_paragraph
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: paragraph.ud_book_paragraph.default
+targetEntityType: paragraph
+bundle: ud_book_paragraph
+mode: default
+content:
+  field_ud_book_paragraph_author:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ud_book_paragraph_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

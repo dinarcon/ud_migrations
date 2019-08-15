@@ -1,0 +1,21 @@
+uuid: 8427db66-25d8-4488-ad6b-31bceff6b1d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ud_paragraphs
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: node.ud_paragraphs.title
+field_name: title
+entity_type: node
+bundle: ud_paragraphs
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: b3ad6e5e-ffe1-43b7-9362-89a75f4662b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ud_book_paragraph_author
+    - paragraphs.paragraphs_type.ud_book_paragraph
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: paragraph.ud_book_paragraph.field_ud_book_paragraph_author
+field_name: field_ud_book_paragraph_author
+entity_type: paragraph
+bundle: ud_book_paragraph
+label: Author
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

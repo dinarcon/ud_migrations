@@ -1,0 +1,23 @@
+uuid: ea75ea0b-4472-44b8-98fc-d9b5e1a2f157
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.ud_paragraphs
+  module:
+    - user
+  enforced:
+    module:
+      - ud_migrations_paragraph_config
+id: node.ud_paragraphs.teaser
+targetEntityType: node
+bundle: ud_paragraphs
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }
