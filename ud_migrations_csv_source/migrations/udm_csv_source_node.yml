@@ -1,0 +1,40 @@
+id: udm_csv_source_node
+label: 'UD host node migration for CSV source example'
+migration_tags:
+  - UD CSV Source
+  - UD Example
+source:
+  plugin: csv
+  path: modules/custom/ud_migrations/ud_migrations_csv_source/sources/udm_people.csv
+  ids: [unique_id]
+process:
+  title: name
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: udm_csv_source_image
+    source: photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - name
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: udm_csv_source_paragraph
+    source: book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - udm_csv_source_image
+    - udm_csv_source_paragraph
+  optional: []

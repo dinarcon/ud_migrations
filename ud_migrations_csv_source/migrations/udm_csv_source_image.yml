@@ -1,0 +1,41 @@
+id: udm_csv_source_image
+label: 'UD dependee image migration for CSV source example'
+migration_tags:
+  - UD CSV Source
+  - UD Example
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://profile_picture/'
+
+  plugin: csv
+  path: modules/custom/ud_migrations/ud_migrations_csv_source/sources/udm_photos.csv
+  ids: [photo_id]
+  header_offset: null
+  fields:
+    - name: photo_id
+      label: 'Photo ID'
+    - name: photo_url
+      label: 'Photo URL'
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: photo_url
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: photo_url
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'
