@@ -1,0 +1,51 @@
+id: udm_json_source_image
+label: 'UD dependee image migration for JSON source example'
+migration_tags:
+  - UD JSON Source
+  - UD Example
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://profile_picture/'
+
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  urls:
+    - modules/custom/ud_migrations/ud_migrations_json_source/sources/udm_data.json
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_photos
+  fields:
+    - name: src_photo_id
+      label: 'Photo ID'
+      selector: photo_id
+    - name: src_photo_url
+      label: 'Photo URL'
+      selector: photo_url
+  ids:
+    src_photo_id:
+      type: string
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: src_photo_url
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: src_photo_url
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'

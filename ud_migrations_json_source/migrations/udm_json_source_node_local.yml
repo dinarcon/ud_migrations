@@ -1,0 +1,69 @@
+id: udm_json_source_node_local
+label: 'UD host node migration for local JSON source example'
+migration_tags:
+  - UD JSON Source
+  - UD Example
+source:
+  constants:
+    TITLE_SUFFIX: ' (Imported from local file)'
+
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  urls:
+    - modules/custom/ud_migrations/ud_migrations_json_source/sources/udm_data.json
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_people
+  fields:
+    - name: src_unique_id
+      label: 'Unique ID'
+      selector: unique_id
+    - name: src_name
+      label: 'Name'
+      selector: name
+    - name: src_photo_file
+      label: 'Photo ID'
+      selector: photo_file
+    - name: src_book_ref
+      label: 'Book paragraph ID'
+      selector: book_ref
+  ids:
+    src_unique_id:
+      type: integer
+process:
+  title:
+    plugin: concat
+    source:
+      - src_name
+      - constants/TITLE_SUFFIX
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: udm_json_source_image
+    source: src_photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - src_name
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: udm_json_source_paragraph
+    source: src_book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - udm_json_source_image
+    - udm_json_source_paragraph
+  optional: []
