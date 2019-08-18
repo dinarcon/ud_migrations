@@ -1,0 +1,40 @@
+id: udm_xml_source_paragraph
+label: 'UD dependee paragraph migration for XML source example'
+migration_tags:
+  - UD XML Source
+  - UD Example
+source:
+  plugin: url
+
+  # This configuration is ignored by the 'xml' data parser plugin.
+  # It only has effect when using the 'simple_xml' data parser plugin.
+  data_fetcher_plugin: file
+
+  # Set to 'xml' to use XMLReader https://www.php.net/manual/en/book.xmlreader.php
+  # Set to 'simple_xml' to use SimpleXML https://www.php.net/manual/en/ref.simplexml.php
+  data_parser_plugin: xml
+
+  urls:
+    - modules/custom/ud_migrations/ud_migrations_xml_source/sources/udm_data.xml
+
+  # XPath expression. It is common that it starts with a slash (/).
+  item_selector: /data/udm_book_paragraph
+  fields:
+    - name: src_book_id
+      label: 'Book ID'
+      selector: book_id
+    - name: src_book_title
+      label: 'Title'
+      selector: book_details/title
+    - name: src_book_author
+      label: 'Author'
+      selector: book_details/author
+  ids:
+    src_book_id:
+      type: string
+process:
+  field_ud_book_paragraph_title: src_book_title
+  field_ud_book_paragraph_author: src_book_author
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: ud_book_paragraph

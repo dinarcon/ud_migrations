@@ -1,0 +1,76 @@
+id: udm_xml_source_node_remote
+label: 'UD host node migration for remote XML source example'
+migration_tags:
+  - UD XML Source
+  - UD Example
+source:
+  constants:
+    TITLE_SUFFIX: ' (Imported from remote file)'
+
+  plugin: url
+
+  # This configuration is ignored by the 'xml' data parser plugin.
+  # It only has effect when using the 'simple_xml' data parser plugin.
+  data_fetcher_plugin: http
+
+  # Set to 'xml' to use XMLReader https://www.php.net/manual/en/book.xmlreader.php
+  # Set to 'simple_xml' to use SimpleXML https://www.php.net/manual/en/ref.simplexml.php
+  data_parser_plugin: simple_xml
+
+  urls:
+    - https://sendeyo.com/up/d/478f835718
+    #- modules/custom/ud_migrations/ud_migrations_xml_source/sources/udm_remote.xml
+
+  # XPath expression. It is common that it starts with a slash (/).
+  item_selector: /data/udm_people
+  fields:
+    - name: src_unique_id
+      label: 'Unique ID'
+      selector: unique_id
+    - name: src_name
+      label: 'Name'
+      selector: name
+    - name: src_photo_file
+      label: 'Photo ID'
+      selector: photo_file
+    - name: src_book_ref
+      label: 'Book paragraph ID'
+      selector: book_ref
+  ids:
+    src_unique_id:
+      type: integer
+process:
+  title:
+    plugin: concat
+    source:
+      - src_name
+      - constants/TITLE_SUFFIX
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: udm_xml_source_image
+    source: src_photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - src_name
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: udm_xml_source_paragraph
+    source: src_book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - udm_xml_source_image
+    - udm_xml_source_paragraph
+  optional: []

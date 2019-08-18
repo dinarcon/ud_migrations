@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <udm_people>
+    <unique_id>1</unique_id>
+    <name>One Uno Un</name>
+    <photo_file>P01</photo_file>
+    <book_ref>B10</book_ref>
+  </udm_people>
+  <udm_people>
+    <unique_id>2</unique_id>
+    <name>Two Dos Deux</name>
+    <photo_file>P02</photo_file>
+    <book_ref>B20</book_ref>
+  </udm_people>
+  <udm_people>
+    <unique_id>3</unique_id>
+    <name>Three Tres Trois</name>
+    <photo_file>P03</photo_file>
+    <book_ref>B30</book_ref>
+  </udm_people>
+</data>

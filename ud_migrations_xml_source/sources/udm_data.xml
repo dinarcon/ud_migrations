@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <udm_people>
+    <unique_id>1</unique_id>
+    <name>Michele Metts</name>
+    <photo_file>P01</photo_file>
+    <book_ref>B10</book_ref>
+  </udm_people>
+  <udm_people>
+    <unique_id>2</unique_id>
+    <name>Benjamin Melançon</name>
+    <photo_file>P02</photo_file>
+    <book_ref>B20</book_ref>
+  </udm_people>
+  <udm_people>
+    <unique_id>3</unique_id>
+    <name>Stefan Freudenberg</name>
+    <photo_file>P03</photo_file>
+    <book_ref>B30</book_ref>
+  </udm_people>
+  <udm_book_paragraph>
+    <book_id>B10</book_id>
+    <book_details>
+      <title>The definite guide to Drupal 7</title>
+      <author>Benjamin Melançon et al.</author>
+    </book_details>
+  </udm_book_paragraph>
+  <udm_book_paragraph>
+    <book_id>B20</book_id>
+    <book_details>
+      <title>Understanding Drupal Views</title>
+      <author>Carlos Dinarte</author>
+    </book_details>
+  </udm_book_paragraph>
+  <udm_book_paragraph>
+    <book_id>B30</book_id>
+    <book_details>
+      <title>Understanding Drupal Migrations</title>
+      <author>Mauricio Dinarte</author>
+    </book_details>
+  </udm_book_paragraph>
+  <udm_photos>
+    <photo_id>P01</photo_id>
+    <photo_url>https://agaric.coop/sites/default/files/pictures/picture-15-1421176712.jpg</photo_url>
+    <photo_dimensions>
+      <width>240</width>
+      <height>351</height>
+    </photo_dimensions>
+  </udm_photos>
+  <udm_photos>
+    <photo_id>P02</photo_id>
+    <photo_url>https://agaric.coop/sites/default/files/pictures/picture-3-1421176784.jpg</photo_url>
+    <photo_dimensions>
+      <width>240</width>
+      <height>351</height>
+    </photo_dimensions>
+  </udm_photos>
+  <udm_photos>
+    <photo_id>P03</photo_id>
+    <photo_url>https://agaric.coop/sites/default/files/pictures/picture-2-1421176752.jpg</photo_url>
+    <photo_dimensions>
+      <width>240</width>
+      <height>351</height>
+    </photo_dimensions>
+  </udm_photos>
+</data>
