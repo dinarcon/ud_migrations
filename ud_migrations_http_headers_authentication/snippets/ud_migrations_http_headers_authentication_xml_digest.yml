@@ -1,0 +1,46 @@
+id: udm_xml_source_remote_digest
+label: 'UD XML headers and Digest authentication'
+migration_tags:
+  - UD HTTP Headers and Authentication
+  - UD Example
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: simple_xml
+
+  urls:
+    - https://understanddrupal.com/files/data.xml
+
+  item_selector: /data/udm_root
+
+  # This configuration is provided by the `http` data fetcher plugin.
+  # Do not disclose any sensitive information in the headers.
+  headers:
+    Accept: 'application/xml; charset=utf-8'
+    Accept-Encoding: 'gzip, deflate, br'
+    Accept-Language: 'en-US,en;q=0.5'
+    Custom-Key: 'understand'
+    Arbitrary-Header: 'drupal'
+
+  # This configuration is provided by the `digest` authentication plugin.
+  # Credentials should never be saved in plain text nor committed to the repo.
+  authentication:
+    plugin: digest
+    username: totally
+    password: insecure
+
+  fields:
+    - name: src_unique_id
+      label: 'Unique ID'
+      selector: unique_id
+    - name: src_title
+      label: 'Title'
+      selector: title
+  ids:
+    src_unique_id:
+      type: integer
+process:
+  title: src_title
+destination:
+  plugin: 'entity:node'
+  default_bundle: page
