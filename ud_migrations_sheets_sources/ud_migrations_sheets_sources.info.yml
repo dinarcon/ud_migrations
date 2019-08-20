@@ -1,0 +1,14 @@
+type: module
+name: UD Google Sheets, Microsoft Excel, and LibreOffice Calc source migration
+description: 'Example Google Sheets, Microsoft Excel, and LibreOffice Calc source migration. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
+package: Understand Drupal
+core: 8.x
+dependencies:
+  - drupal:migrate
+  - entity_reference_revisions:entity_reference_revisions
+  - migrate_google_sheets:migrate_google_sheets
+  # The following dependency needs to be added info if the backup CSV migration will be used.
+  #- migrate_source_csv:migrate_source_csv (>=8.x-3.x)
+  - migrate_spreadsheet:migrate_spreadsheet
+  - paragraphs:paragraphs
+  - ud_migrations_paragraph_config:ud_migrations_paragraph_config

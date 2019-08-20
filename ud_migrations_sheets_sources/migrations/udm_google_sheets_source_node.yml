@@ -1,0 +1,57 @@
+id: udm_google_sheets_source_node
+label: 'UD host node migration for Google Sheets source example'
+migration_tags:
+  - UD Sheets Source
+  - UD Example
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: google_sheets
+  urls: 'http://spreadsheets.google.com/feeds/list/1YVJt9isPNjkUNHf3YgoTx38r04TwqRYnp1LFrik3TAk/1/public/values?alt=json'
+  fields:
+    - name: src_unique_id
+      label: 'Unique ID'
+      selector: uniqueid
+    - name: src_name
+      label: 'Name'
+      selector: name
+    - name: src_photo_file
+      label: 'Photo ID'
+      selector: photo-file
+    - name: src_book_ref
+      label: 'Book paragraph ID'
+      selector: bookref
+  ids:
+    src_unique_id:
+      type: integer
+process:
+  title: src_name
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: udm_microsoft_excel_source_image
+    source: src_photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - src_photo_file
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: udm_libreoffice_calc_source_paragraph
+    source: src_book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - udm_microsoft_excel_source_image
+    - udm_libreoffice_calc_source_paragraph
+  optional: []

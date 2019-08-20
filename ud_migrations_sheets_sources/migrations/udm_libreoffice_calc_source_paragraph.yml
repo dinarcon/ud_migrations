@@ -1,0 +1,25 @@
+id: udm_libreoffice_calc_source_paragraph
+label: 'UD dependee paragraph migration for LibreOffice Calc source example'
+migration_tags:
+  - UD Sheets Source
+  - UD Example
+source:
+  plugin: spreadsheet
+  file: modules/custom/ud_migrations/ud_migrations_sheets_sources/sources/udm_book_paragraph.ods
+  worksheet: 'UD Example Sheet'
+  header_row: 1
+  origin: A2
+  columns:
+    - book_id
+    - book_title
+    - 'Book author'
+  row_index_column: 'Document Row Index'
+  keys:
+    book_id:
+      type: string
+process:
+  field_ud_book_paragraph_title: book_title
+  field_ud_book_paragraph_author: 'Book author'
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: ud_book_paragraph

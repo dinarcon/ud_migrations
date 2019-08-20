@@ -1,0 +1,48 @@
+id: udm_microsoft_excel_source_image
+label: 'UD dependee image migration for Microsoft Excel source example'
+migration_tags:
+  - UD Sheets Source
+  - UD Example
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://profile_picture/'
+
+  plugin: spreadsheet
+  file: modules/custom/ud_migrations/ud_migrations_sheets_sources/sources/udm_photos.xlsx
+  worksheet: 'UD Example Sheet'
+  # The file does not have a headers row.
+  header_row: null
+  origin: A1
+  # If no header row is available, you use the spreadsheet's column names: A, B, C, etc.
+  # If you do not manually add a list of columns, all columns that contain data in the worksheet would be returned.
+  # The same names need to used in the process section.
+  columns:
+    - A # This column contains the photo ID. Example: 'P01'.
+    - B # This column contains the photo URL.
+  row_index_column: null
+  keys:
+    A:
+      type: string
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: B # This is the photo URL column.
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: B # This is the photo URL column.
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'
