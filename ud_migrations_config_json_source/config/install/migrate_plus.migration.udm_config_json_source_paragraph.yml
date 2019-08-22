@@ -1,0 +1,40 @@
+uuid: 17271e8a-7099-4558-bee7-caee4f15323f
+id: udm_config_json_source_paragraph
+label: 'UD configuration dependee paragraph migration for JSON source example'
+dependencies:
+  enforced:
+    module:
+      - ud_migrations_config_json_source
+migration_tags:
+  - UD Config JSON Source
+  - UD Example
+migration_group: default
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+
+  urls:
+    - modules/custom/ud_migrations/ud_migrations_config_json_source/sources/udm_data.json
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_book_paragraph
+  fields:
+    - name: src_book_id
+      label: 'Book ID'
+      selector: book_id
+    - name: src_book_title
+      label: 'Title'
+      selector: book_details/title
+    - name: src_book_author
+      label: 'Author'
+      selector: book_details/author
+  ids:
+    src_book_id:
+      type: string
+process:
+  field_ud_book_paragraph_title: src_book_title
+  field_ud_book_paragraph_author: src_book_author
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: ud_book_paragraph

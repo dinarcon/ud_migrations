@@ -7,7 +7,7 @@ source:
   plugin: embedded_data
   data_rows:
     - book_id: 'B10'
-      book_title: 'The definite guide to Drupal 7'
+      book_title: 'The definitive guide to Drupal 7'
       book_author: 'Benjamin Melançon et al.'
     - book_id: 'B20'
       book_title: 'Understanding Drupal Views'

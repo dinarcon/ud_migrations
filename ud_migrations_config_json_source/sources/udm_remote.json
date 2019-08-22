@@ -1,0 +1,24 @@
+{
+  "data": {
+    "udm_people": [
+      {
+        "unique_id": 1,
+        "name": "One Uno Un",
+        "photo_file": "P01",
+        "book_ref": "B10"
+      },
+      {
+        "unique_id": 2,
+        "name": "Two Dos Deux",
+        "photo_file": "P02",
+        "book_ref": "B20"
+      },
+      {
+        "unique_id": 3,
+        "name": "Three Tres Trois",
+        "photo_file": "P03",
+        "book_ref": "B30"
+      }
+    ]
+  }
+}
