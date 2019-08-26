@@ -1,0 +1,22 @@
+uuid: 78925705-a799-4749-99c9-a1725fb54def
+id: udm_config_group_json_source
+label: 'UD Config Group (JSON source)'
+description: 'A container for migrations about individuals and their favorite books. Learn more at https://understanddrupal.com/migrations.'
+source_type: 'JSON resource'
+shared_configuration:
+  dependencies:
+    enforced:
+      module:
+        - ud_migrations_config_group_json_source
+  migration_tags:
+    - UD Config Group (JSON Source)
+    - UD Example
+  source:
+    plugin: url
+    # Change the data fetcher to 'file' in case remote JSON file is unavailable.
+    data_fetcher_plugin: http
+    data_parser_plugin: json
+    # Change URL to local copy in case remote JSON file is unavailable.
+    urls:
+    - https://api.myjson.com/bins/pk1hf
+    #- modules/custom/ud_migrations/ud_migrations_config_group_json_source/sources/udm_data.json

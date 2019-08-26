@@ -1,0 +1,35 @@
+uuid: 12371e8a-7099-4558-bee7-caee4f153abc
+id: udm_config_group_json_source_paragraph
+label: 'UD configuration dependee paragraph migration for migration group example (JSON source)'
+# Any configuration defined in the migration group can be overridden here
+# by re-declaring the configuration and assigning a value.
+# `dependencies` inherited from migration group.
+# `migration_tags` inherited from migration group.
+migration_group: udm_config_group_json_source
+source:
+  # `plugin` inherited from migration group.
+  # `data_fetcher_plugin` inherited from migration group.
+  # `data_parser_plugin` inherited from migration group.
+  # `urls` inherited from migration group.
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_book_paragraph
+  fields:
+    - name: src_book_id
+      label: 'Book ID'
+      selector: book_id
+    - name: src_book_title
+      label: 'Title'
+      selector: book_details/title
+    - name: src_book_author
+      label: 'Author'
+      selector: book_details/author
+  ids:
+    src_book_id:
+      type: string
+process:
+  field_ud_book_paragraph_title: src_book_title
+  field_ud_book_paragraph_author: src_book_author
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: ud_book_paragraph

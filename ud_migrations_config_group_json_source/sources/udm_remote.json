@@ -1,0 +1,64 @@
+{
+  "data": {
+    "udm_people": [
+      {
+        "unique_id": 1,
+        "name": "One Uno Un",
+        "photo_file": "P01",
+        "book_ref": "B10"
+      },
+      {
+        "unique_id": 2,
+        "name": "Two Dos Deux",
+        "photo_file": "P02",
+        "book_ref": "B20"
+      },
+      {
+        "unique_id": 3,
+        "name": "Three Tres Trois",
+        "photo_file": "P03",
+        "book_ref": "B30"
+      }
+    ],
+    "udm_book_paragraph": [
+      {
+        "book_id": "B10",
+        "book_details": {
+          "title": "A book",
+          "author": "An author"
+        }
+      },
+      {
+        "book_id": "B20",
+        "book_details": {
+          "title": "Un libro",
+          "author": "Un autor"
+        }
+      },
+      {
+        "book_id": "B30",
+        "book_details": {
+          "title": "Un livre",
+          "author": "Un auteur"
+        }
+      }
+    ],
+    "udm_photos": [
+      {
+        "photo_id": "P01",
+        "photo_url": "https://agaric.coop/sites/default/files/pictures/picture-15-1421176712.jpg",
+        "photo_dimensions": [240, 351]
+      },
+      {
+        "photo_id": "P02",
+        "photo_url": "https://agaric.coop/sites/default/files/pictures/picture-3-1421176784.jpg",
+        "photo_dimensions": [240, 351]
+      },
+      {
+        "photo_id": "P03",
+        "photo_url": "https://agaric.coop/sites/default/files/pictures/picture-2-1421176752.jpg",
+        "photo_dimensions": [240, 351]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+uuid: def749e5-3ad7-480f-ba4d-9c7e17e3d789
+id: udm_config_group_json_source_node
+label: 'UD configuration host node migration for migration group example (JSON source)'
+# Any configuration defined in the migration group can be overridden here
+# by re-declaring the configuration and assigning a value.
+# `dependencies` inherited from migration group.
+# `migration_tags` inherited from migration group.
+migration_group: udm_config_group_json_source
+source:
+  # `plugin` inherited from migration group.
+  # `data_fetcher_plugin` inherited from migration group.
+  # `data_parser_plugin` inherited from migration group.
+  # `urls` inherited from migration group.
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_people
+  fields:
+    - name: src_unique_id
+      label: 'Unique ID'
+      selector: unique_id
+    - name: src_name
+      label: 'Name'
+      selector: name
+    - name: src_photo_file
+      label: 'Photo ID'
+      selector: photo_file
+    - name: src_book_ref
+      label: 'Book paragraph ID'
+      selector: book_ref
+  ids:
+    src_unique_id:
+      type: integer
+process:
+  title:
+    plugin: concat
+    source:
+      - src_name
+      - constants/TITLE_SUFFIX
+  field_ud_image/target_id:
+    plugin: migration_lookup
+    migration: udm_config_group_json_source_image
+    source: src_photo_file
+  field_ud_image/alt:
+    plugin: concat
+    source:
+      - constants/PHOTO_DESCRIPTION_PREFIX
+      - src_name
+    delimiter: ' '
+  pseudo_mbe_book_paragraph:
+    plugin: migration_lookup
+    migration: udm_config_group_json_source_paragraph
+    source: src_book_ref
+  field_ud_favorite_book:
+    plugin: sub_process
+    source:
+      - '@pseudo_mbe_book_paragraph'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+destination:
+  plugin: 'entity:node'
+  default_bundle: ud_paragraphs
+migration_dependencies:
+  required:
+    - udm_config_group_json_source_image
+    - udm_config_group_json_source_paragraph
+  optional: []

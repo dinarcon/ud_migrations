@@ -1,0 +1,52 @@
+uuid: abc32839-c48c-42d7-8a77-997ff03a9123
+id: udm_config_group_json_source_image
+label: 'UD configuration dependee image migration for migration group example (JSON source)'
+# Any configuration defined in the migration group can be overridden here
+# by re-declaring the configuration and assigning a value.
+# `dependencies` inherited from migration group.
+# `migration_tags` inherited from migration group.
+migration_group: udm_config_group_json_source
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://udm_config_group_json_source/'
+
+  # `plugin` inherited from migration group.
+  # `data_fetcher_plugin` inherited from migration group.
+  # `data_parser_plugin` inherited from migration group.
+  # `urls` inherited from migration group.
+
+  # XPath-like selector. The slash (/) at the beginning is optional.
+  item_selector: /data/udm_photos
+  fields:
+    - name: src_photo_id
+      label: 'Photo ID'
+      selector: photo_id
+    - name: src_photo_url
+      label: 'Photo URL'
+      selector: photo_url
+  ids:
+    src_photo_id:
+      type: string
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: src_photo_url
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: src_photo_url
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'
