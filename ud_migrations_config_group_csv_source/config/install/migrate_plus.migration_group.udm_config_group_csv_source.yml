@@ -1,0 +1,18 @@
+uuid: e88e28cc-94e4-4039-ae37-c1e3217fc0c4
+id: udm_config_group_csv_source
+label: 'UD Config Group (CSV source)'
+description: 'A container for migrations about individuals and their favorite books. Learn more at https://understanddrupal.com/migrations.'
+source_type: 'CSV resource'
+shared_configuration:
+  dependencies:
+    enforced:
+      module:
+        - ud_migrations_config_group_csv_source
+  migration_tags:
+    - UD Config Group (CSV Source)
+    - UD Example
+  source:
+    plugin: csv
+    # It is assumed that CSV files do not contain a headers row. This can be
+    # overridden for migrations where that is not the case.
+    header_offset: null

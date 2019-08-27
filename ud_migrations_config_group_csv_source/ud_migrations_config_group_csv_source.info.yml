@@ -1,0 +1,16 @@
+type: module
+name: UD configuration group migration (CSV source)
+description: 'Example migration for configuration group with CSV source. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
+package: Understand Drupal
+core: 8.x
+dependencies:
+  - drupal:migrate
+  - entity_reference_revisions:entity_reference_revisions
+  - migrate_plus:migrate_plus
+  - migrate_source_csv:migrate_source_csv (>=8.x-3.x)
+  # Migrate Tools is set as dependency to use the `--group` flag in Drush
+  # commands for import and rollback operations. It also provides a user
+  # interface to execute migrations.
+  - migrate_tools:migrate_tools
+  - paragraphs:paragraphs
+  - ud_migrations_paragraph_config:ud_migrations_paragraph_config

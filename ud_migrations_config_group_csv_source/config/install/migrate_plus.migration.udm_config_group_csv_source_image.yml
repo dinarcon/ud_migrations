@@ -1,0 +1,44 @@
+uuid: fe2d845a-032a-4d2c-b952-395e03d7e379
+id: udm_config_group_csv_source_image
+label: 'UD configuration dependee image migration for migration group example (CSV source)'
+# Any configuration defined in the migration group can be overridden here
+# by re-declaring the configuration and assigning a value.
+# `dependencies` inherited from migration group.
+# `migration_tags` inherited from migration group.
+migration_group: udm_config_group_csv_source
+source:
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://udm_config_group_csv_source/'
+
+  # `plugin` inherited from migration group.
+  path: modules/custom/ud_migrations/ud_migrations_csv_source/sources/udm_photos.csv
+  ids: [photo_id]
+  # `header_offset` inherited from migration group.
+  fields:
+    - name: photo_id
+      label: 'Photo ID'
+    - name: photo_url
+      label: 'Photo URL'
+process:
+  psf_destination_filename:
+    plugin: callback
+    callable: basename
+    source: photo_url
+  psf_destination_full_path:
+    - plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@psf_destination_filename'
+    - plugin: urlencode
+  psf_source_image_path:
+    plugin: urlencode
+    source: photo_url
+  uri:
+    plugin: file_copy
+    source:
+      - '@psf_source_image_path'
+      - '@psf_destination_full_path'
+    file_exists: 'rename'
+    move: FALSE
+destination:
+  plugin: 'entity:file'
