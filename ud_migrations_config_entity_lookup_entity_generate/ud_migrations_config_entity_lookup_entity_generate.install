@@ -1,0 +1,28 @@
+<?php
+
+use Drupal\user\Entity\User;
+
+/**
+ * @file
+ * Install and uninstall functions for the test module module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function ud_migrations_config_entity_lookup_entity_generate_install() {
+  foreach (['udm_user', 'udm_usuario', 'udm_utilisateur'] as $username) {
+    User::create(['name' => $username, 'status' => 1])->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ud_migrations_config_entity_lookup_entity_generate_uninstall() {
+  foreach (['udm_user', 'udm_usuario', 'udm_utilisateur'] as $username) {
+    if ($user = user_load_by_name($username)) {
+      $user->delete();
+    }
+  }
+}

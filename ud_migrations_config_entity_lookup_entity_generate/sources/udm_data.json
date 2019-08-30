@@ -1,0 +1,29 @@
+{
+  "data": {
+    "udm_nodes": [
+      {
+        "unique_id": 1,
+        "thoughtful_title": "Amazing recipe",
+        "creative_author": "udm_user",
+        "fruit_list": "Apple, Pear, Banana"
+      },
+      {
+        "unique_id": 2,
+        "thoughtful_title": "Fruit-less recipe",
+        "creative_author": "udm_not_found"
+      },
+      {
+        "unique_id": 3,
+        "thoughtful_title": "Delicious recipe",
+        "creative_author": "udm_usuario",
+        "fruit_list": "Grape"
+      },
+      {
+        "unique_id": 4,
+        "thoughtful_title": "Fantastic recipe",
+        "creative_author": "udm_utilisateur",
+        "fruit_list": "Apple, Grape"
+      }
+    ]
+  }
+}
