@@ -10,10 +10,10 @@ source:
       thoughtful_title: 'Fruit-less recipe'
     - unique_id: 3
       thoughtful_title: 'Delicious recipe'
-      fruit_list: 'Green grape'
+      fruit_list: 'Grape'
     - unique_id: 4
       thoughtful_title: 'Fantastic recipe'
-      fruit_list: 'Green apple, Red apple, Grape'
+      fruit_list: 'Green apple, Red apple, Red grape, White grape'
   ids:
     unique_id:
       type: integer
@@ -23,7 +23,7 @@ process:
     - plugin: skip_on_empty
       source: fruit_list
       method: process
-      message: 'No fruit_list listed.'
+      message: 'Row does not contain fruit_list.'
     - plugin: explode
       delimiter: ','
     - plugin: callback
