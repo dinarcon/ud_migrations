@@ -33,6 +33,8 @@ source:
       type: integer
 process:
   title: src_thoughtful_title
+  # Note that 3 users are created by hook_install and removed by hook_uninstall.
+  # When no user is found, assign 1 to uid which corresponds to the admin user.
   uid:
     - plugin: entity_lookup
       entity_type: user
@@ -44,7 +46,7 @@ process:
     - plugin: skip_on_empty
       source: src_fruit_list
       method: process
-      message: 'No fruit_list listed.'
+      message: 'Row does not contain fruit_list.'
     - plugin: explode
       delimiter: ','
     - plugin: callback
