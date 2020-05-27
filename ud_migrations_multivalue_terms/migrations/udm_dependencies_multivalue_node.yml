@@ -28,6 +28,7 @@ process:
       delimiter: ','
     - plugin: migration_lookup
       migration: udm_dependencies_multivalue_term
+      no_stub: true
 destination:
   plugin: 'entity:node'
   default_bundle: article
