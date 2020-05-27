@@ -26,6 +26,8 @@ process:
       message: 'No fruit_list listed.'
     - plugin: explode
       delimiter: ','
+    - plugin: callback
+      callable: trim
     - plugin: migration_lookup
       migration: udm_dependencies_multivalue_term
       no_stub: true
