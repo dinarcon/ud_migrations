@@ -1,5 +1,6 @@
 id: ud_migrations_paragraph_intro_paragraph
 label: 'UD dependee paragraph migration for paragraph example'
+migration_group: ud_migrations_paragraph_group
 migration_tags:
   - UD Paragraphs Intro
   - UD Example

@@ -1,0 +1,4 @@
+id: ud_migrations_paragraph_group
+label: UD Paragraph Example
+description: Paragraph migration example
+source_type: JSON / Paragraphs
