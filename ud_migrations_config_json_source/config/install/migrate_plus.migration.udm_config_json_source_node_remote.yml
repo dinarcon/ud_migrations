@@ -18,7 +18,7 @@ source:
   data_parser_plugin: json
 
   urls:
-    - https://api.myjson.com/bins/110rcr
+    - https://udrupal.com/files/udm_remote.json
     #- modules/custom/ud_migrations/ud_migrations_config_json_source/sources/udm_remote.json
 
   # XPath-like selector. The slash (/) at the beginning is optional.

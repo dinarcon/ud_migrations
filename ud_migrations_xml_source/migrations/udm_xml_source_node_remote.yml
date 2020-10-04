@@ -18,7 +18,7 @@ source:
   data_parser_plugin: simple_xml
 
   urls:
-    - https://sendeyo.com/up/d/478f835718
+    - https://udrupal.com/files/udm_remote.xml
     #- modules/custom/ud_migrations/ud_migrations_xml_source/sources/udm_remote.xml
 
   # XPath expression. It is common that it starts with a slash (/).

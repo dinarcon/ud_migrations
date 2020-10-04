@@ -18,5 +18,5 @@ shared_configuration:
     data_parser_plugin: json
     # Change URL to local copy in case remote JSON file is unavailable.
     urls:
-    - https://api.myjson.com/bins/pk1hf
+    - https://udrupal.com/files/udm_remote.json
     #- modules/custom/ud_migrations/ud_migrations_config_group_json_source/sources/udm_data.json
