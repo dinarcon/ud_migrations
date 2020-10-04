@@ -5,18 +5,18 @@ migration_tags:
   - UD Example
 source:
   constants:
-    SOURCE_DOMAIN: 'https://agaric.coop'
+    SOURCE_DOMAIN: 'https://udrupal.com'
     DRUPAL_FILE_DIRECTORY: 'public://portrait/'
   plugin: embedded_data
   data_rows:
     - photo_id: 'P01'
-      photo_url: 'sites/default/files/2018-12/micky-cropped.jpg'
+      photo_url: 'photos/freescholar.jpg'
     - photo_id: 'P02'
       photo_url: ''
     - photo_id: 'P03'
-      photo_url: 'sites/default/files/pictures/picture-94-1480090110.jpg'
+      photo_url: 'photos/gnuget.jpg'
     - photo_id: 'P04'
-      photo_url: 'sites/default/files/2019-01/clayton-profile-medium.jpeg'
+      photo_url: 'photos/cedewey.jpg'
   ids:
     photo_id:
       type: string

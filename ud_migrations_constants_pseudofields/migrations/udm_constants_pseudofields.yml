@@ -2,26 +2,26 @@ id: udm_constants_pseudofields
 label: 'UD constants and pseudofields migration'
 source:
   constants:
-    BASE_URL: 'https://agaric.coop'
+    BASE_URL: 'https://udrupal.com'
     PHOTO_DESCRIPTION_PREFIX: 'Photo of'
   plugin: embedded_data
   data_rows:
     -
       unique_id: 1
       name: 'Michele Metts'
-      photo_url: 'sites/default/files/2018-12/micky-cropped.jpg'
+      photo_url: 'photos/freescholar.jpg'
       photo_width: '587'
       photo_height: '657'
     -
       unique_id: 2
       name: 'David Valdez'
-      photo_url: 'sites/default/files/pictures/picture-94-1480090110.jpg'
+      photo_url: 'photos/gnuget.jpg'
       photo_width: '512'
       photo_height: '512'
     -
       unique_id: 3
       name: 'Clayton Dewey'
-      photo_url: 'sites/default/files/2019-01/clayton-profile-medium.jpeg'
+      photo_url: 'photos/cedewey.jpg'
       photo_width: '700'
       photo_height: '592'
   ids:

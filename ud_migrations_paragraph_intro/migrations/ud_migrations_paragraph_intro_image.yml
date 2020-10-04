@@ -9,11 +9,11 @@ source:
   plugin: embedded_data
   data_rows:
     - photo_id: 'P01'
-      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-15-1421176712.jpg'
+      photo_url: 'https://udrupal.com/photos/freescholar.jpg'
     - photo_id: 'P02'
-      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-3-1421176784.jpg'
+      photo_url: 'https://udrupal.com/photos/mlncn.jpg'
     - photo_id: 'P03'
-      photo_url: 'https://agaric.coop/sites/default/files/pictures/picture-2-1421176752.jpg'
+      photo_url: 'https://udrupal.com/photos/sfreudenberg.jpg'
   ids:
     photo_id:
       type: string
