@@ -3,6 +3,7 @@ name: UD Config entity_lookup and entity_generate examples
 description: 'Example migration for Migrate Tools entity_lookup and entity_generate process plugins. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
 package: Understand Drupal
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - drupal:migrate
   - migrate_plus:migrate_plus

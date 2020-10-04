@@ -3,5 +3,6 @@ name: UD Process Plugins Introduction
 description: 'Example of basic data transformations with process plugins. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
 package: Understand Drupal
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - drupal:migrate
