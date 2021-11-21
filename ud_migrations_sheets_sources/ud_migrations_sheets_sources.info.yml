@@ -3,6 +3,7 @@ name: UD Google Sheets, Microsoft Excel, and LibreOffice Calc source migration
 description: 'Example Google Sheets, Microsoft Excel, and LibreOffice Calc source migration. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
 package: Understand Drupal
 core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - drupal:migrate
   - entity_reference_revisions:entity_reference_revisions
