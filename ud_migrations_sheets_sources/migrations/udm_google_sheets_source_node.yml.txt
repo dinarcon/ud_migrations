@@ -1,3 +1,9 @@
+# As of August 2, 2021, Google has turned down the Sheets v3 API. The new v4 API
+# requires attaching an API key to the request URL which is a different process
+# from the one explained in this article. Because of this, the example as it
+# currently setup will no longer work. Notice the the Migrate Google Sheets
+# module still can be used if a valid v4 API URL is used. For Sheets v4
+# compatibility, see https://www.drupal.org/i/3236814
 id: udm_google_sheets_source_node
 label: 'UD host node migration for Google Sheets source example'
 migration_tags:
