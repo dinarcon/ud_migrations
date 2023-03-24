@@ -3,7 +3,7 @@ name: UD Migration Subfields
 description: 'Example of migrating into subfields. Learn more at <a href="https://understanddrupal.com/migrations" title="Drupal Migrations">https://understanddrupal.com/migrations</a>.'
 package: Understand Drupal
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 dependencies:
   - drupal:migrate
   - migrate_file:migrate_file
